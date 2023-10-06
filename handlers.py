@@ -5,7 +5,7 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 import const
 from utils import translater
-from db.models import UserHistory
+from db.crud import create_user, get_histiry
 
 router = Router()
 
@@ -25,16 +25,16 @@ async def cmd_start(message: types.Message) -> None:
 
 
 @router.message(F.text == "Translate")
-async def with_puree(message: types.Message):
+async def translate_hend(message: types.Message):
     await message.reply('Okay, then enter the text you want to translate')
 
 
 @router.message(F.text == "History")
-async def with_puree(message: types.Message):
-    user = await UserHistory.get_histori(message)
+async def history_hend(message: types.Message):
+    user = await get_histiry(message.from_user.id)
     builder = ReplyKeyboardBuilder()
-    for i in user.message_inp:
-        builder.add(types.KeyboardButton(text=str(i)[:9]))
+    for i in user:
+        builder.add(types.KeyboardButton(text=str(i)[2:9]))
     builder.adjust(1)
     await message.reply(
         'Your history',
@@ -43,7 +43,7 @@ async def with_puree(message: types.Message):
 
 
 @router.message(F.text)
-async def with_puree(message: types.Message):
-    text = await translater(str(message))
-    await UserHistory.save(message, text)
-    await message.reply(f'Your text: {text}')
+async def save_hend(message: types.Message):
+    trans = await translater(message.text)
+    await create_user(message, trans)
+    await message.reply(f'Your text: {trans}')

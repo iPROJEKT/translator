@@ -2,19 +2,16 @@ import os
 import asyncio
 import logging
 
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
 from aiogram import Bot, Dispatcher
 from aiogram.utils.token import TokenValidationError
+from sqlalchemy.engine import URL
 from dotenv import load_dotenv
 
 import handlers
-from db.base import Base
-from config_loader import load_config
 
 load_dotenv()
 
-# Логирование ошибок
+
 logger = logging.getLogger(__name__)
 
 
