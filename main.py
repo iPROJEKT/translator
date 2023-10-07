@@ -4,10 +4,9 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.utils.token import TokenValidationError
-from sqlalchemy.engine import URL
 from dotenv import load_dotenv
 
-import handlers
+from bot import handlers
 
 load_dotenv()
 

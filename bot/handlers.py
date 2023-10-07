@@ -2,9 +2,8 @@ from aiogram import Router, F, types
 from aiogram.filters import Command
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-
-import const
-from utils import translater
+from bot import const
+from bot.utils import translater
 from db.crud import create_user, get_histiry
 
 router = Router()
