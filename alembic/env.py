@@ -11,8 +11,6 @@ from alembic import context
 from db.models import UserHistory
 from db.db import Base
 
-
-
 load_dotenv('.env')
 config = context.config
 config.set_main_option('sqlalchemy.url', os.environ['DATABASE_URL'])

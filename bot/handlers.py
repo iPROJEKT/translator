@@ -2,7 +2,7 @@ from aiogram import Router, F, types
 from aiogram.filters import Command
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-from bot.const import (
+from .const import (
     STRAT_COMAND,
     KEY_TRANSLATE,
     KEY_HISTORY,

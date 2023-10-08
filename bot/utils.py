@@ -3,7 +3,7 @@ import os
 import deepl
 from dotenv import load_dotenv
 
-from const import TARGET_LANG
+from .const import TARGET_LANG
 
 load_dotenv()
 
