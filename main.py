@@ -7,9 +7,14 @@ from aiogram.utils.token import TokenValidationError
 from dotenv import load_dotenv
 
 from bot import handlers
+from bot.const import (
+    LOG_FORM,
+    LOG_FILEMOD,
+    LOG_FILENAME,
+    TOKEN_EXECT
+)
 
 load_dotenv()
-
 
 logger = logging.getLogger(__name__)
 
@@ -24,12 +29,12 @@ async def main() -> None:
 
 if __name__ == '__main__':
     logging.basicConfig(
-        format='%(asctime)s, %(levelname)s, %(message)s',
-        filemode='w',
-        filename='logger.log',
+        format=LOG_FORM,
+        filemode=LOG_FILEMOD,
+        filename=LOG_FILENAME,
         level=logging.INFO,
     )
     try:
         asyncio.run(main())
     except TokenValidationError:
-        raise TokenValidationError('Token is invalid!')
+        raise TokenValidationError(TOKEN_EXECT)
