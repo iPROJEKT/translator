@@ -24,12 +24,12 @@ async def cmd_start(message: types.Message) -> None:
 
 
 @router.message(F.text == "Translate")
-async def translate_hend(message: types.Message):
+async def translate_hend(message: types.Message) -> None:
     await message.reply('Okay, then enter the text you want to translate')
 
 
 @router.message(F.text == "History")
-async def history_hend(message: types.Message):
+async def history_hend(message: types.Message) -> None:
     user = await get_histiry(message.from_user.id)
     builder = ReplyKeyboardBuilder()
     for i in user:
@@ -42,7 +42,7 @@ async def history_hend(message: types.Message):
 
 
 @router.message(F.text)
-async def save_hend(message: types.Message):
-    trans = await translater(message.text)
-    await create_user(message, trans)
-    await message.reply(f'Your text: {trans}')
+async def save_hend(message: types.Message) -> None:
+    translate_text = await translater(message.text)
+    await create_user(message, translate_text)
+    await message.reply(f'Your text: {translate_text}')
